@@ -30,22 +30,47 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
+        if (e.getKeyChar() == 'n')
+            reset();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        switch (e.getKeyChar()) {
+            case 'w':
+                //move left paddle up
+                break;
+            case 's':
+                //move left paddle down
+                break;
+            case 'i':
+                //move right paddle up
+                break;
+            case 'k':
+                //move right paddle down
+                break;
 
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        keyPressed(e); //will do same as pressed
     }
 
     @Override
     public void run() {
-
+        //noinspection InfiniteLoopStatement
+        while (true) {
+            update();
+            repaint();
+            try {
+                Thread.sleep(35);
+            } catch (Exception e) {
+                System.err.println("Error Sleeping.");
+                Logger.logErrorMessage("Error Sleeping Thread.");
+            }
+        }
     }
 
     public void addNotify() {
