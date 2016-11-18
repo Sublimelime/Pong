@@ -9,7 +9,7 @@
 public class Ball {
 
     static final double MAX_SPEED = 0; //todo set to more proper value
-    static final int WIDTH = 5, HEIGHT = 5;
+    static final int WIDTH = 10, HEIGHT = 10;
     double x, y, speed, angle;
     public Ball(int x, int y) {
         this.y = y;

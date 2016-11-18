@@ -8,11 +8,12 @@
 
 public class Paddle {
 
-    static final int WIDTH = 10, HEIGHT = 30;
-    boolean upPressed, downPressed;
-    double x, y, speed;
+    public static final int WIDTH = 10, HEIGHT = 70;
+    private boolean upPressed, downPressed;
+    private double x, y, speed;
     public Paddle(int x, int y) {
-
+        this.x = x;
+        this.y = y;
     }
 
     void update() {

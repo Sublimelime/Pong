@@ -13,6 +13,12 @@ public class PongGame {
     int status, player1Score, player2Score;
 
     public PongGame() {
+        p1 = new Paddle(570, 250);
+        p2 = new Paddle(20, 250);
+        ball = new Ball(300, 250);
+        status = PLAYING;
+        player1Score = 0;
+        player2Score = 0;
     }
 
     void update() {

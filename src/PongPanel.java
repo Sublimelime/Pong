@@ -103,11 +103,26 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
             bg.fillRect(getWidth() / 2, i, 10, 30);
         }
         //top/bottom walls
+        bg.setColor(Color.white);
         bg.fillRect(0, 0, getWidth(), 20);
         bg.fillRect(0, getHeight() - 20, getWidth(), 20);
 
+        //Moving objects -----------------
+        //paddles
+        bg.setColor(Color.white);
+        bg.fillRect((int) game.getP1().getX(), (int) game.getP1().getY(), game.getP1().WIDTH, game.getP1().HEIGHT);
+        bg.fillRect((int) game.getP2().getX(), (int) game.getP2().getY(), game.getP2().WIDTH, game.getP2().HEIGHT);
 
-        g.drawImage(buffer, 0, 0, null);
+        //score
+        bg.setFont(new Font("Arial", Font.BOLD, 80));
+        bg.drawString("" + game.getPlayer1Score(), 200, 100);
+        bg.drawString("" + game.getPlayer2Score(), 350, 100);
+
+        //ball
+        bg.setColor(Color.cyan);
+        bg.fillRect((int) game.getBall().getX(), (int) game.getBall().getY(), game.getBall().WIDTH, game.getBall().HEIGHT);
+
+        g.drawImage(buffer, 0, 0, null); //draw buffer to screen
     }
 
     public void addNotify() {
