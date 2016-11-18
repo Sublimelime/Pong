@@ -38,41 +38,47 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        //todo should set "up" boolean to true
         switch (e.getKeyChar()) {
             case 'w':
                 //move left paddle up
+                game.getP1().setUpPressed(true);
                 break;
             case 's':
+                game.getP1().setDownPressed(true);
                 //move left paddle down
                 break;
             case 'i':
                 //move right paddle up
+                game.getP2().setUpPressed(true);
+
                 break;
             case 'k':
                 //move right paddle down
+                game.getP2().setDownPressed(true);
                 break;
-
         }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        //todo should set "up" boolean to false
         switch (e.getKeyChar()) {
             case 'w':
                 //move left paddle up
+                game.getP1().setUpPressed(false);
                 break;
             case 's':
+                game.getP1().setDownPressed(false);
                 //move left paddle down
                 break;
             case 'i':
                 //move right paddle up
+                game.getP2().setUpPressed(false);
+
                 break;
             case 'k':
                 //move right paddle down
+                game.getP2().setDownPressed(false);
                 break;
-
         }
     }
 

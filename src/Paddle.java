@@ -17,7 +17,10 @@ public class Paddle {
     }
 
     void update() {
-
+        if (upPressed)
+            y--;
+        else if (downPressed)
+            y++;
     }
 
     public boolean isUpPressed() {
