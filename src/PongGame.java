@@ -8,13 +8,13 @@
 
 public class PongGame {
     public static final int PLAYING = 0, PLAYER1_WINS = 1, PLAYER2_WINS = 2;
-    Paddle p1, p2;
-    Ball ball;
-    int status, player1Score, player2Score;
+    private Paddle p1, p2;
+    private Ball ball;
+    private int status, player1Score, player2Score;
 
     public PongGame() {
-        p1 = new Paddle(570, 250);
-        p2 = new Paddle(20, 250);
+        p1 = new Paddle(20, 250);
+        p2 = new Paddle(570, 250);
         ball = new Ball(300, 250);
         status = PLAYING;
         player1Score = 0;
@@ -22,11 +22,13 @@ public class PongGame {
     }
 
     void update() {
-
+        moveBall(1); //todo proper distance? -help
+        p1.update(); //update the paddles
+        p2.update();
     }
 
     int status() {
-        return 0;
+        return status;
     }
 
     public Paddle getP1() {
@@ -67,10 +69,6 @@ public class PongGame {
 
     boolean hitRightPaddle() {
         return false;
-    }
-
-    void reset() {
-
     }
 
 }

@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * Created on 11/17/2016, 2:26 PM
  *
@@ -11,16 +13,22 @@ public class Paddle {
     public static final int WIDTH = 10, HEIGHT = 70;
     private boolean upPressed, downPressed;
     private double x, y, speed;
+    private Rectangle rect;
     public Paddle(int x, int y) {
         this.x = x;
         this.y = y;
+        rect = new Rectangle(x, y);
     }
 
     void update() {
         if (upPressed)
-            y--;
+            setY(getY() - 10);
         else if (downPressed)
-            y++;
+            setY(getY() + 10);
+    }
+
+    public Rectangle getRect() {
+        return rect;
     }
 
     public boolean isUpPressed() {
@@ -43,15 +51,16 @@ public class Paddle {
         return x;
     }
 
-    public void setX(double x) {
-        this.x = x;
-    }
-
     public double getY() {
         return y;
     }
 
     public void setY(double y) {
         this.y = y;
+        updateRectangle();
+    }
+
+    private void updateRectangle() {
+        rect.setLocation((int) x, (int) y);
     }
 }

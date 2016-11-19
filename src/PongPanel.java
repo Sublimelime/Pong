@@ -136,7 +136,7 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
         requestFocus();
     }
 
-    void reset() {
+    private void reset() {
         game = new PongGame();
     }
 }
