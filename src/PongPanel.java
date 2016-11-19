@@ -32,12 +32,15 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyChar() == 'n')
+        if (e.getKeyChar() == 'n' && game.status() != PongGame.PLAYING)
             reset();
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
+        if (game.status() != PongGame.PLAYING) //prevent controls if not playing
+            return;
+
         switch (e.getKeyChar()) {
             case 'w':
                 //move left paddle up

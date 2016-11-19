@@ -44,7 +44,8 @@ public class PongGame {
     }
 
     void moveBall(double distance) {
-
+        ball.setX(ball.getX() + Math.cos(Math.toRadians(ball.getAngle())) * distance);
+        ball.setY(ball.getY() + Math.sin(Math.toRadians(ball.getAngle())) * distance);
     }
 
     int getPlayer1Score() {
@@ -56,19 +57,19 @@ public class PongGame {
     }
 
     boolean hitTopWall() {
-        return false;
+        return ball.getY() <= 20;
     }
 
     boolean hitBottomWall() {
-        return false;
+        return ball.getY() >= 480;
     }
 
     boolean hitLeftPaddle() {
-        return false;
+        return ball.getRect().intersects(p1.getRect());
     }
 
     boolean hitRightPaddle() {
-        return false;
+        return ball.getRect().intersects(p2.getRect());
     }
 
 }

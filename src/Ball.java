@@ -14,6 +14,7 @@ public class Ball {
     static final int WIDTH = 10, HEIGHT = 10;
     private double x, y, speed, angle;
     private Rectangle rect;
+
     public Ball(int x, int y) {
         this.y = y;
         this.x = x;
