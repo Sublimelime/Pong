@@ -22,6 +22,7 @@ public class PongGame {
     }
 
     void update() {
+        //scoring
         if (ball.getX() <= 0) { //player on the right scored a point
             player2Score++;
             ball = new Ball(300, 250);
@@ -29,9 +30,11 @@ public class PongGame {
             player1Score++;
             ball = new Ball(300, 250);
         }
+        //updates
         moveBall(ball.getSpeed());
         p1.update(); //update the paddles
         p2.update();
+        //win display
         if (status == PLAYER1_WINS) {
             player2Score = 0;
             player1Score = 0;
@@ -42,6 +45,19 @@ public class PongGame {
             player1Score = 0;
             Logger.logUserMessage("Player 2 won.");
             Logger.messageWindow("Player 2 Won. Press OK to restart.");
+        }
+        //bouncing
+        if (hitLeftPaddle()) {
+            if (ball.getMiddle() == p1.getMiddle()) {
+                ball.setAngle(0);
+            } else if (ball.getMiddle() < p1.getMiddle()) {
+                double topHeight = p1.getMiddle() - p1.getY();
+                ball.setAngle(360 - (p1.getMiddle() - ball.getMiddle() / (topHeight) * 90) * 80);
+            }
+        } else if (hitRightPaddle()) {
+            if (ball.getMiddle() == p2.getMiddle()) {
+                ball.setAngle(180);
+            }
         }
     }
 

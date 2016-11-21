@@ -12,20 +12,20 @@ public class Ball {
 
     static final int WIDTH = 10, HEIGHT = 10;
     private static final double MAX_SPEED = 10;
-    private double x, y, speed, angle;
+    private double x, y, speed, angle, middle;
     private Rectangle rect;
 
     public Ball(int x, int y) {
         this.y = y;
         this.x = x;
-        rect = new Rectangle(x, y);
+        rect = new Rectangle(x, y, WIDTH, HEIGHT);
         this.speed = 3;
         double tempAngle = Math.random();
         if (tempAngle > 0.5)
             angle = 180;
         else
             angle = 0;
-
+        middle = y + (HEIGHT / 2);
     }
 
     public Rectangle getRect() {
@@ -41,6 +41,10 @@ public class Ball {
         updateRectangle();
     }
 
+    public double getMiddle() {
+        return middle;
+    }
+
     public double getY() {
         return y;
     }
@@ -48,6 +52,7 @@ public class Ball {
     public void setY(double y) {
         this.y = y;
         updateRectangle();
+        middle = y + (HEIGHT / 2);
     }
 
     public double getSpeed() {

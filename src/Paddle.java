@@ -12,12 +12,13 @@ public class Paddle {
 
     public static final int WIDTH = 10, HEIGHT = 70;
     private boolean upPressed, downPressed;
-    private double x, y, speed;
+    private double x, y, speed, middle;
     private Rectangle rect;
     public Paddle(int x, int y) {
         this.x = x;
         this.y = y;
-        rect = new Rectangle(x, y);
+        rect = new Rectangle(x, y, WIDTH, HEIGHT);
+        middle = y + (HEIGHT / 2);
     }
 
     void update() {
@@ -51,6 +52,10 @@ public class Paddle {
         return x;
     }
 
+    public double getMiddle() {
+        return middle;
+    }
+
     public double getY() {
         return y;
     }
@@ -58,6 +63,7 @@ public class Paddle {
     public void setY(double y) {
         this.y = y;
         updateRectangle();
+        middle = y + (HEIGHT / 2);
     }
 
     private void updateRectangle() {
