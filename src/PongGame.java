@@ -22,9 +22,27 @@ public class PongGame {
     }
 
     void update() {
-        moveBall(1); //todo proper distance? -help
+        if (ball.getX() <= 0) { //player on the right scored a point
+            player2Score++;
+            ball = new Ball(300, 250);
+        } else if (ball.getX() >= 600) { //player on the left scored a point
+            player1Score++;
+            ball = new Ball(300, 250);
+        }
+        moveBall(ball.getSpeed());
         p1.update(); //update the paddles
         p2.update();
+        if (status == PLAYER1_WINS) {
+            player2Score = 0;
+            player1Score = 0;
+            Logger.logUserMessage("Player 1 won.");
+            Logger.messageWindow("Player 1 Won. Press OK to restart.");
+        } else if (status == PLAYER2_WINS) {
+            player2Score = 0;
+            player1Score = 0;
+            Logger.logUserMessage("Player 2 won.");
+            Logger.messageWindow("Player 2 Won. Press OK to restart.");
+        }
     }
 
     int status() {

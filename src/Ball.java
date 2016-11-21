@@ -10,8 +10,8 @@ import java.awt.*;
 
 public class Ball {
 
-    static final double MAX_SPEED = 0; //todo set to more proper value
     static final int WIDTH = 10, HEIGHT = 10;
+    private static final double MAX_SPEED = 10;
     private double x, y, speed, angle;
     private Rectangle rect;
 
@@ -19,7 +19,13 @@ public class Ball {
         this.y = y;
         this.x = x;
         rect = new Rectangle(x, y);
-        this.angle = (int) (Math.random()) * 180;
+        this.speed = 3;
+        double tempAngle = Math.random();
+        if (tempAngle > 0.5)
+            angle = 180;
+        else
+            angle = 0;
+
     }
 
     public Rectangle getRect() {
@@ -50,6 +56,8 @@ public class Ball {
 
     public void setSpeed(double speed) {
         this.speed = speed;
+        if (this.speed > MAX_SPEED) //prevent going over max speed
+            this.speed = MAX_SPEED;
     }
 
     public double getAngle() {
