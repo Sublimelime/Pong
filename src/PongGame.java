@@ -47,17 +47,31 @@ public class PongGame {
             Logger.messageWindow("Player 2 Won. Press OK to restart.");
         }
         //bouncing
+        double halfHeight = p1.getMiddle() - p1.getY();
         if (hitLeftPaddle()) {
-            if (ball.getMiddle() == p1.getMiddle()) {
+            if (ball.getMiddle() == p1.getMiddle()) { //if hit exact centre
                 ball.setAngle(0);
-            } else if (ball.getMiddle() < p1.getMiddle()) {
-                double topHeight = p1.getMiddle() - p1.getY();
-                ball.setAngle(360 - (p1.getMiddle() - ball.getMiddle() / (topHeight) * 90) * 80);
+            } else if (ball.getMiddle() < p1.getMiddle()) { //if hit top section
+                double paddleContactX = p1.getX() + p1.WIDTH;
+                if (ball.getX() <= paddleContactX) {
+                    double calculatedY = 0;
+                    double tempDistance = Math.sqrt(Math.pow((paddleContactX - ball.getOldX()), 2) +
+                            Math.pow((calculatedY - ball.getOldY()), 2));
+
+                }
+                //correct the ball's angle
+                ball.setAngle(360 - ((p1.getMiddle() - ball.getMiddle()) / (halfHeight) * 90) * 80);
+            } else { //hit bottom section
+
             }
         } else if (hitRightPaddle()) {
             if (ball.getMiddle() == p2.getMiddle()) {
                 ball.setAngle(180);
             }
+        } else if (hitBottomWall()) {
+
+        } else if (hitTopWall()) {
+
         }
     }
 
@@ -78,6 +92,8 @@ public class PongGame {
     }
 
     void moveBall(double distance) {
+        ball.setOldX(ball.getX());
+        ball.setOldY(ball.getY());
         ball.setX(ball.getX() + Math.cos(Math.toRadians(ball.getAngle())) * distance);
         ball.setY(ball.getY() + Math.sin(Math.toRadians(ball.getAngle())) * distance);
     }
@@ -98,11 +114,11 @@ public class PongGame {
         return ball.getY() >= 480;
     }
 
-    boolean hitLeftPaddle() {
+    private boolean hitLeftPaddle() {
         return ball.getRect().intersects(p1.getRect());
     }
 
-    boolean hitRightPaddle() {
+    private boolean hitRightPaddle() {
         return ball.getRect().intersects(p2.getRect());
     }
 

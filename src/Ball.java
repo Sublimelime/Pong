@@ -12,7 +12,7 @@ public class Ball {
 
     static final int WIDTH = 10, HEIGHT = 10;
     private static final double MAX_SPEED = 10;
-    private double x, y, speed, angle, middle;
+    private double x, y, speed, angle, middle, oldX, oldY;
     private Rectangle rect;
 
     public Ball(int x, int y) {
@@ -39,6 +39,22 @@ public class Ball {
     public void setX(double x) {
         this.x = x;
         updateRectangle();
+    }
+
+    public double getOldX() {
+        return oldX;
+    }
+
+    public void setOldX(double oldX) {
+        this.oldX = oldX;
+    }
+
+    public double getOldY() {
+        return oldY;
+    }
+
+    public void setOldY(double oldY) {
+        this.oldY = oldY;
     }
 
     public double getMiddle() {
@@ -70,7 +86,7 @@ public class Ball {
     }
 
     public void setAngle(double angle) {
-        this.angle = angle;
+        this.angle = angle % 360;
     }
 
     private void updateRectangle() {
