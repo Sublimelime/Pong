@@ -10,6 +10,7 @@ import java.awt.*;
 
 public class Ball {
 
+    public static final double SPEED_GAIN = 1;
     static final int WIDTH = 10, HEIGHT = 10;
     private static final double MAX_SPEED = 10;
     private double x, y, speed, angle, middle, oldX, oldY;
