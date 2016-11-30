@@ -62,6 +62,10 @@ public class Paddle {
 
     public void setY(double y) {
         this.y = y;
+        if (y < 20)
+            this.y = 20;
+        if (y > 410)
+            this.y = 410;
         updateRectangle();
         middle = y + (HEIGHT / 2);
     }

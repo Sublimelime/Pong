@@ -71,16 +71,29 @@ public class PongGame {
 
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
         } else if (hitBottomWall()) {
+            double hitY = 470, hitX;
+            double deltaYToHit = hitY - ball.getOldY();
+            double percentYUsed = deltaYToHit / (ball.getOldY() - ball.getY());
 
+            double deltaXToHit = (ball.getOldX() - ball.getX()) * percentYUsed;
+            hitX = ball.getOldX() + deltaXToHit;
+            ball.setX(hitX);
+            ball.setY(hitY);
+
+            ball.setAngle(-ball.getAngle()); //fix angle
 
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
-        } else if (hitTopWall()) { //todo -help
+        } else if (hitTopWall()) {
             double hitY = 20, hitX;
             double deltaYToHit = hitY - ball.getOldY();
             double percentYUsed = deltaYToHit / (ball.getOldY() - ball.getY());
 
             double deltaXToHit = (ball.getOldX() - ball.getX()) * percentYUsed;
             hitX = ball.getOldX() + deltaXToHit;
+            ball.setX(hitX);
+            ball.setY(hitY);
+
+            ball.setAngle(-ball.getAngle()); //fix angle
 
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
         }

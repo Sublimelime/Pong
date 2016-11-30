@@ -10,9 +10,9 @@ import java.awt.*;
 
 public class Ball {
 
-    public static final double SPEED_GAIN = 1;
+    public static final double SPEED_GAIN = 0.5;
     static final int WIDTH = 10, HEIGHT = 10;
-    private static final double MAX_SPEED = 10;
+    private static final double MAX_SPEED = 8;
     private double x, y, speed, angle, middle, oldX, oldY;
     private Rectangle rect;
 
@@ -21,11 +21,14 @@ public class Ball {
         this.x = x;
         rect = new Rectangle(x, y, WIDTH, HEIGHT);
         this.speed = 3;
-        double tempAngle = Math.random();
+        /*double tempAngle = Math.random(); todo disabled for testing
         if (tempAngle > 0.5)
             angle = 180;
         else
-            angle = 0;
+            angle = 0;*/
+
+        angle = 100;
+
         middle = y + (HEIGHT / 2);
     }
 
