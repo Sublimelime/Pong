@@ -13,6 +13,7 @@ public class Ball {
     public static final double SPEED_GAIN = 0.5;
     static final int WIDTH = 10, HEIGHT = 10;
     private static final double MAX_SPEED = 8;
+    public static Color COLOR = Color.white;
     private double x, y, speed, angle, middle, oldX, oldY;
     private Rectangle rect;
 
@@ -27,6 +28,11 @@ public class Ball {
         else
             angle = 0;
         middle = y + (HEIGHT / 2);
+        Logger.logCodeMessage("Ball created at " + x + "," + y);
+    }
+
+    public static void changeColor() {
+        COLOR = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
     }
 
     public Rectangle getRect() {

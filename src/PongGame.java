@@ -48,6 +48,8 @@ public class PongGame {
         }
         //bouncing
         if (hitLeftPaddle()) {
+            Ball.changeColor();
+
             double hitX = p1.getX() + Paddle.WIDTH, hitY = 0; //todo help with hitY
             double percentFromMiddle = Math.abs((hitY + (Ball.WIDTH / 2)) - (p1.getY() + (Paddle.HEIGHT / 2))) / 45;
 
@@ -67,12 +69,14 @@ public class PongGame {
                 ball.setAngle(percentFromMiddle * 85);
             }
         } else if (hitRightPaddle()) {
+            Ball.changeColor();
             if (ball.getMiddle() == p2.getMiddle()) {
                 ball.setAngle(180);
             }
 
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
         } else if (hitBottomWall()) {
+            Ball.changeColor();
             double hitY = 470, hitX;
             double deltaYToHit = hitY - ball.getOldY();
             double percentYUsed = deltaYToHit / (ball.getOldY() - ball.getY());
@@ -86,6 +90,7 @@ public class PongGame {
 
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
         } else if (hitTopWall()) {
+            Ball.changeColor();
             double hitY = 20, hitX;
             double deltaYToHit = hitY - ball.getOldY();
             double percentYUsed = deltaYToHit / (ball.getOldY() - ball.getY());
@@ -98,6 +103,7 @@ public class PongGame {
 
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
         }
+
     }
 
     int status() {
