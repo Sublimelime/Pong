@@ -47,22 +47,24 @@ public class PongGame {
             Logger.messageWindow("Player 2 Won. Press OK to restart.");
         }
         //bouncing
-        double halfHeight = p1.getMiddle() - p1.getY();
         if (hitLeftPaddle()) {
+            double hitX = p1.getX() + Paddle.WIDTH, hitY = 0; //todo help with hitY
+            double percentFromMiddle = Math.abs((hitY + (Ball.WIDTH / 2)) - (p1.getY() + (Paddle.HEIGHT / 2))) / 45;
+
+
             if (ball.getMiddle() == p1.getMiddle()) { //if hit exact centre
                 ball.setAngle(0);
             } else if (ball.getMiddle() < p1.getMiddle()) { //if hit top section
                 double paddleContactX = p1.getX() + Paddle.WIDTH;
-                if (ball.getX() <= paddleContactX) {
-                    double calculatedY = 0; //todo -help
-                    double tempDistance = Math.sqrt(Math.pow((paddleContactX - ball.getOldX()), 2) +
-                            Math.pow((calculatedY - ball.getOldY()), 2));
+                if (ball.getX() <= paddleContactX) { //if inside the paddle
+
                 }
                 //correct the ball's angle
-                ball.setAngle(360 - ((p1.getMiddle() - ball.getMiddle()) / (halfHeight) * 90) * 80);
+                ball.setAngle(360 - (percentFromMiddle * 85));
                 ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
             } else { //hit bottom section
 
+                ball.setAngle(percentFromMiddle * 85);
             }
         } else if (hitRightPaddle()) {
             if (ball.getMiddle() == p2.getMiddle()) {
@@ -143,6 +145,10 @@ public class PongGame {
 
     private boolean hitRightPaddle() {
         return ball.getRect().intersects(p2.getRect());
+    }
+
+    private double distance(double x1, double x2, double y1, double y2) {
+        return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
     }
 
 }
