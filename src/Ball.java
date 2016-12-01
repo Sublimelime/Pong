@@ -21,14 +21,11 @@ public class Ball {
         this.x = x;
         rect = new Rectangle(x, y, WIDTH, HEIGHT);
         this.speed = 3;
-        /*double tempAngle = Math.random(); todo disabled for testing
+        double tempAngle = Math.random();
         if (tempAngle > 0.5)
             angle = 180;
         else
-            angle = 0;*/
-
-        angle = 100;
-
+            angle = 0;
         middle = y + (HEIGHT / 2);
     }
 
