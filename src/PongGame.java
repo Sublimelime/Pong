@@ -54,7 +54,7 @@ public class PongGame {
             } else if (ball.getMiddle() < p1.getMiddle()) { //if hit top section
                 double paddleContactX = p1.getX() + Paddle.WIDTH;
                 if (ball.getX() <= paddleContactX) {
-                    double calculatedY = ball.getY() - Math.sin(Math.toRadians(ball.getAngle())); //todo -help
+                    double calculatedY = 0; //todo -help
                     double tempDistance = Math.sqrt(Math.pow((paddleContactX - ball.getOldX()), 2) +
                             Math.pow((calculatedY - ball.getOldY()), 2));
                 }
@@ -77,7 +77,7 @@ public class PongGame {
 
             double deltaXToHit = (ball.getOldX() - ball.getX()) * percentYUsed;
             hitX = ball.getOldX() + deltaXToHit;
-            ball.setX(hitX);
+            ball.setX(hitX); //move the ball back to the calculated hit point
             ball.setY(hitY);
 
             ball.setAngle(-ball.getAngle()); //fix angle
@@ -90,9 +90,8 @@ public class PongGame {
 
             double deltaXToHit = (ball.getOldX() - ball.getX()) * percentYUsed;
             hitX = ball.getOldX() + deltaXToHit;
-            ball.setX(hitX);
+            ball.setX(hitX); //move the ball back to the calculated hit point
             ball.setY(hitY);
-
             ball.setAngle(-ball.getAngle()); //fix angle
 
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
@@ -130,12 +129,12 @@ public class PongGame {
         return player2Score;
     }
 
-    boolean hitTopWall() {
+    private boolean hitTopWall() {
         return ball.getY() <= 20;
     }
 
-    boolean hitBottomWall() {
-        return ball.getY() >= 480;
+    private boolean hitBottomWall() {
+        return ball.getY() + Ball.HEIGHT >= 480;
     }
 
     private boolean hitLeftPaddle() {
