@@ -26,9 +26,9 @@ public class Paddle {
 
     void update() {
         if (upPressed)
-            setY(getY() - 10);
+            setY(getY() - 5);
         else if (downPressed)
-            setY(getY() + 10);
+            setY(getY() + 5);
     }
 
     public Rectangle getRect() {

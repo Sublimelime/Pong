@@ -131,7 +131,7 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
 
         //ball
         bg.setColor(Ball.COLOR);
-        bg.fillRect((int) game.getBall().getX(), (int) game.getBall().getY(), game.getBall().WIDTH, game.getBall().HEIGHT);
+        bg.fillOval((int) game.getBall().getX(), (int) game.getBall().getY(), game.getBall().WIDTH, game.getBall().HEIGHT);
 
         g.drawImage(buffer, 0, 0, null); //draw buffer to screen
     }

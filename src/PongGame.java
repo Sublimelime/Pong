@@ -47,36 +47,33 @@ public class PongGame {
             Logger.messageWindow("Player 2 Won. Press OK to restart.");
         }
         //bouncing
-        if (hitLeftPaddle()) { //todo make paddles change color when impacted by ball
+        if (hitLeftPaddle()) {
             Ball.changeColor();
             p1.setRandomColor();
+            //do bounce
+            double hitX = p1.getX() + Paddle.WIDTH, hitY;
+            double deltaXToHit = hitX - ball.getOldX();
+            double percentXUsed = deltaXToHit / (ball.getOldX() - ball.getY());
+            double deltaYToHit = (ball.getOldY() - ball.getY()) * percentXUsed;
+            hitY = ball.getOldY() + deltaYToHit;
+            ball.setX(hitX); //move the ball back to the calculated hit point
+            ball.setY(hitY);
+            //fix angle
+            double percentFromMid = Math.abs((hitY + Ball.HEIGHT / 2) - (p1.getY() + Paddle.HEIGHT / 2)) / 45;
 
-            double hitX = p1.getX() + Paddle.WIDTH, hitY = 0; //todo help with hitY
-            double percentFromMiddle = Math.abs((hitY + (Ball.WIDTH / 2)) - (p1.getY() + (Paddle.HEIGHT / 2))) / 45;
-
-
-            if (ball.getMiddle() == p1.getMiddle()) { //if hit exact centre
+            if (ball.getMiddle() == p1.getMiddle()) {
                 ball.setAngle(0);
-            } else if (ball.getMiddle() < p1.getMiddle()) { //if hit top section
-                double paddleContactX = p1.getX() + Paddle.WIDTH;
-                if (ball.getX() <= paddleContactX) { //if inside the paddle
+            } else if (ball.getMiddle() < p1.getMiddle()) {
+                ball.setAngle(360 - (percentFromMid * 85));
+            } else
+                ball.setAngle(percentFromMid * 85);
 
-                }
-                //correct the ball's angle
-                ball.setAngle(360 - (percentFromMiddle * 85));
-                ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
-            } else { //hit bottom section
-
-                ball.setAngle(percentFromMiddle * 85);
-            }
+            ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
         } else if (hitRightPaddle()) {
             Ball.changeColor();
             p2.setRandomColor();
 
-            if (ball.getMiddle() == p2.getMiddle()) {
-                ball.setAngle(180);
-            }
-
+            ball.setAngle(180);
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
         } else if (hitBottomWall()) {
             Ball.changeColor();
