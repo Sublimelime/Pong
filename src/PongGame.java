@@ -73,8 +73,27 @@ public class PongGame {
             Ball.changeColor();
             p2.setRandomColor();
 
-            ball.setAngle(180);
+            //do bounce
+            double hitX = p2.getX() - Ball.WIDTH, hitY;
+            double deltaXToHit = hitX - ball.getOldX();
+            double percentXUsed = deltaXToHit / (ball.getOldX() - ball.getY());
+            double deltaYToHit = (ball.getOldY() - ball.getY()) * percentXUsed;
+            hitY = ball.getOldY() + deltaYToHit;
+            ball.setX(hitX); //move the ball back to the calculated hit point
+            ball.setY(hitY);
+            //fix angle
+            double percentFromMid = Math.abs((hitY + Ball.HEIGHT / 2) - (p2.getY() + Paddle.HEIGHT / 2)) / 45;
+
+            if (ball.getMiddle() == p2.getMiddle()) {
+                ball.setAngle(180);
+            } else if (ball.getMiddle() < p2.getMiddle()) {
+                ball.setAngle(180 + (percentFromMid * 80));
+            } else
+                ball.setAngle(180 - (percentFromMid * 85));
+
+
             ball.setSpeed(ball.getSpeed() + Ball.SPEED_GAIN); //up the speed with every bounce
+
         } else if (hitBottomWall()) {
             Ball.changeColor();
             double hitY = 470, hitX;
