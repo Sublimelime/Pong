@@ -118,11 +118,13 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
 
         //Moving objects -----------------
         //paddles
-        bg.setColor(Color.white);
+        bg.setColor(game.getP1().getColor());
         bg.fillRect((int) game.getP1().getX(), (int) game.getP1().getY(), game.getP1().WIDTH, game.getP1().HEIGHT);
+        bg.setColor(game.getP2().getColor());
         bg.fillRect((int) game.getP2().getX(), (int) game.getP2().getY(), game.getP2().WIDTH, game.getP2().HEIGHT);
 
         //score
+        bg.setColor(Color.white);
         bg.setFont(new Font("Arial", Font.BOLD, 80));
         bg.drawString("" + game.getPlayer1Score(), 200, 100);
         bg.drawString("" + game.getPlayer2Score(), 350, 100);

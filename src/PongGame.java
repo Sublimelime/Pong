@@ -47,8 +47,9 @@ public class PongGame {
             Logger.messageWindow("Player 2 Won. Press OK to restart.");
         }
         //bouncing
-        if (hitLeftPaddle()) {
+        if (hitLeftPaddle()) { //todo make paddles change color when impacted by ball
             Ball.changeColor();
+            p1.setRandomColor();
 
             double hitX = p1.getX() + Paddle.WIDTH, hitY = 0; //todo help with hitY
             double percentFromMiddle = Math.abs((hitY + (Ball.WIDTH / 2)) - (p1.getY() + (Paddle.HEIGHT / 2))) / 45;
@@ -70,6 +71,8 @@ public class PongGame {
             }
         } else if (hitRightPaddle()) {
             Ball.changeColor();
+            p2.setRandomColor();
+
             if (ball.getMiddle() == p2.getMiddle()) {
                 ball.setAngle(180);
             }

@@ -32,7 +32,14 @@ public class Ball {
     }
 
     public static void changeColor() {
-        COLOR = new Color((int) (Math.random() * 256), (int) (Math.random() * 256), (int) (Math.random() * 256));
+        int r = (int) (Math.random() * 255), g = (int) (Math.random() * 255), b = (int) (Math.random() * 255);
+        if (r < 100)
+            r = 100;
+        if (g < 100)
+            g = 100;
+        if (b < 100)
+            b = 100;
+        COLOR = new Color(r, g, b);
     }
 
     public Rectangle getRect() {

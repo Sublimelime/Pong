@@ -14,11 +14,14 @@ public class Paddle {
     private boolean upPressed, downPressed;
     private double x, y, speed, middle;
     private Rectangle rect;
+    private Color color;
+
     public Paddle(int x, int y) {
         this.x = x;
         this.y = y;
         rect = new Rectangle(x, y, WIDTH, HEIGHT);
         middle = y + (HEIGHT / 2);
+        this.color = Color.white;
     }
 
     void update() {
@@ -73,4 +76,20 @@ public class Paddle {
     private void updateRectangle() {
         rect.setLocation((int) x, (int) y);
     }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public void setRandomColor() {
+        int r = (int) (Math.random() * 255), g = (int) (Math.random() * 255), b = (int) (Math.random() * 255);
+        if (r < 100)
+            r = 100;
+        if (g < 100)
+            g = 100;
+        if (b < 100)
+            b = 100;
+        this.color = new Color(r, g, b);
+    }
+
 }
