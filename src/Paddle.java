@@ -82,13 +82,12 @@ public class Paddle {
     }
 
     public void setRandomColor() {
-        int r = (int) (Math.random() * 255), g = (int) (Math.random() * 255), b = (int) (Math.random() * 255);
-        if (r < 100)
-            r = 100;
-        if (g < 100)
-            g = 100;
-        if (b < 100)
-            b = 100;
+        int r, g, b;
+        do {
+            r = (int) (Math.random() * 255);
+            g = (int) (Math.random() * 255);
+            b = (int) (Math.random() * 255);
+        } while (r + b + g < 300);
         this.color = new Color(r, g, b);
     }
 
