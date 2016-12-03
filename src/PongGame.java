@@ -1,3 +1,4 @@
+
 /**
  * Created on 11/17/2016, 2:17 PM
  *
@@ -6,6 +7,7 @@
  *         Part of project Pong
  */
 
+@SuppressWarnings("CanBeFinal")
 public class PongGame {
     public static final int PLAYING = 0, PLAYER1_WINS = 1, PLAYER2_WINS = 2;
     private Paddle p1, p2;
@@ -13,6 +15,7 @@ public class PongGame {
     private int status, player1Score, player2Score;
 
     public PongGame() {
+        Logger.messageWindow("Welcome to Pong! \n W,S controls left paddle, I,K controls right.");
         p1 = new Paddle(20, 250);
         p2 = new Paddle(570, 250);
         ball = new Ball(300, 250);
@@ -30,6 +33,11 @@ public class PongGame {
             player1Score++;
             ball = new Ball(300, 250);
         }
+        //end game if a player wins
+        if (status == PLAYING && player1Score == 7)
+            status = PLAYER1_WINS;
+        if (status == PLAYING && player2Score == 7)
+            status = PLAYER2_WINS;
         //updates
         moveBall(ball.getSpeed());
         p1.update(); //update the paddles
@@ -39,12 +47,16 @@ public class PongGame {
             player2Score = 0;
             player1Score = 0;
             Logger.logUserMessage("Player 1 won.");
-            Logger.messageWindow("Player 1 Won. Press OK to restart.");
+            Logger.messageWindow("Player 1 Won. Press OK to restart.");  //game will halt here until ok
+            status = PLAYING;
+            ball = new Ball(300, 250);
         } else if (status == PLAYER2_WINS) {
             player2Score = 0;
             player1Score = 0;
             Logger.logUserMessage("Player 2 won.");
-            Logger.messageWindow("Player 2 Won. Press OK to restart.");
+            Logger.messageWindow("Player 2 Won. Press OK to restart."); //game will halt here until ok
+            status = PLAYING;
+            ball = new Ball(300, 250);
         }
         //bouncing
         if (hitLeftPaddle()) {
@@ -141,7 +153,7 @@ public class PongGame {
         return ball;
     }
 
-    void moveBall(double distance) {
+    private void moveBall(double distance) {
         ball.setOldX(ball.getX());
         ball.setOldY(ball.getY());
         ball.setX(ball.getX() + Math.cos(Math.toRadians(ball.getAngle())) * distance);
@@ -170,10 +182,6 @@ public class PongGame {
 
     private boolean hitRightPaddle() {
         return ball.getRect().intersects(p2.getRect());
-    }
-
-    private double distance(double x1, double x2, double y1, double y2) {
-        return Math.sqrt(Math.pow((x1 - x2), 2) + Math.pow((y1 - y2), 2));
     }
 
 }

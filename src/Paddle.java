@@ -8,11 +8,12 @@ import java.awt.*;
  *         Part of project Pong
  */
 
+@SuppressWarnings("CanBeFinal")
 public class Paddle {
 
     public static final int WIDTH = 10, HEIGHT = 70;
     private boolean upPressed, downPressed;
-    private double x, y, speed, middle;
+    private double x, y, middle;
     private Rectangle rect;
     private Color color;
 
@@ -35,16 +36,8 @@ public class Paddle {
         return rect;
     }
 
-    public boolean isUpPressed() {
-        return upPressed;
-    }
-
     public void setUpPressed(boolean upPressed) {
         this.upPressed = upPressed;
-    }
-
-    public boolean isDownPressed() {
-        return downPressed;
     }
 
     public void setDownPressed(boolean downPressed) {
@@ -63,7 +56,7 @@ public class Paddle {
         return y;
     }
 
-    public void setY(double y) {
+    private void setY(double y) {
         this.y = y;
         if (y < 20)
             this.y = 20;

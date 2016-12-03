@@ -13,6 +13,7 @@ import java.awt.image.BufferedImage;
  */
 
 public class PongPanel extends JPanel implements KeyListener, Runnable {
+    @SuppressWarnings("CanBeFinal")
     private BufferedImage buffer;
     private PongGame game;
 
@@ -119,9 +120,9 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
         //Moving objects -----------------
         //paddles
         bg.setColor(game.getP1().getColor());
-        bg.fillRect((int) game.getP1().getX(), (int) game.getP1().getY(), game.getP1().WIDTH, game.getP1().HEIGHT);
+        bg.fillRect((int) game.getP1().getX(), (int) game.getP1().getY(), Paddle.WIDTH, Paddle.HEIGHT);
         bg.setColor(game.getP2().getColor());
-        bg.fillRect((int) game.getP2().getX(), (int) game.getP2().getY(), game.getP2().WIDTH, game.getP2().HEIGHT);
+        bg.fillRect((int) game.getP2().getX(), (int) game.getP2().getY(), Paddle.WIDTH, Paddle.HEIGHT);
 
         //score
         bg.setColor(Color.white);
@@ -131,7 +132,7 @@ public class PongPanel extends JPanel implements KeyListener, Runnable {
 
         //ball
         bg.setColor(Ball.COLOR);
-        bg.fillOval((int) game.getBall().getX(), (int) game.getBall().getY(), game.getBall().WIDTH, game.getBall().HEIGHT);
+        bg.fillOval((int) game.getBall().getX(), (int) game.getBall().getY(), Ball.WIDTH, Ball.HEIGHT);
 
         g.drawImage(buffer, 0, 0, null); //draw buffer to screen
     }

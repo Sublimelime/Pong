@@ -15,6 +15,7 @@ public class Ball {
     private static final double MAX_SPEED = 8;
     public static Color COLOR = Color.white;
     private double x, y, speed, angle, middle, oldX, oldY;
+    @SuppressWarnings("CanBeFinal")
     private Rectangle rect;
 
     public Ball(int x, int y) {
